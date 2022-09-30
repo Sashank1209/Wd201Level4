@@ -5,7 +5,7 @@ const today = new Date().toLocaleDateString("en-CA");
 describe("TODO test suite", () => {
   beforeAll(() => {
     add({
-      title: "Charge Device",
+      title: "wake up",
       dueDate: today,
       completed: true,
     });
@@ -13,7 +13,7 @@ describe("TODO test suite", () => {
   test("Add task", () => {
     let lengthBefore = all.length;
     add({
-      title: "Hit Gym",
+      title: "Go to college",
       dueDate: today,
       completed: false,
     });
@@ -25,7 +25,7 @@ describe("TODO test suite", () => {
     expect(all[0].completed).toBe(true);
   });
   test("Over due tasks", () => {
-    const overdueItems = overdue();
+    const overduecount = overdue();
     var prev_date = new Date();
     prev_date.setDate(prev_date.getDate() - 1);
     let yesterday = prev_date.toLocaleDateString("en-CA");
@@ -34,27 +34,27 @@ describe("TODO test suite", () => {
       dueDate: yesterday,
       completed: false,
     });
-    expect(overdue().length).toBe(overdueItems.length + 1);
+    expect(overdue().length).toBe(overduecount.length + 1);
   });
   test("Due today tasks", () => {
-    const todayItems = dueToday();
+    const todaycount = dueToday();
     add({
-      title: "Clean your laptop",
+      title: "Buy smartphone",
       dueDate: today,
       completed: false,
     });
-    expect(dueToday().length).toBe(todayItems.length + 1);
+    expect(dueToday().length).toBe(todaycount.length + 1);
   });
   test("Due later tasks", () => {
-    const duelaterItems = dueLater();
+    const duelatercount = dueLater();
     var next_date = new Date();
     next_date.setDate(next_date.getDate() + 1);
     let tomorrow = next_date.toLocaleDateString("en-CA");
     add({
-      title: "Pay current bill",
+      title: "Pay for DTH",
       dueDate: tomorrow,
       completed: false,
     });
-    expect(dueLater().length).toBe(duelaterItems.length + 1);
+    expect(dueLater().length).toBe(duelatercount.length + 1);
   });
 });
